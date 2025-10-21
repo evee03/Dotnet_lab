@@ -70,4 +70,4 @@ static void zadanie1_4()
 
 }
 
-zadanie1_4();
+zadanie1_3();

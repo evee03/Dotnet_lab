@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>@DateTime.UtcNow.ToString("dddd, dd MMMM yyyy", new System.Globalization.CultureInfo("pl-PL"))</p>
+
+    @{
+        double random = (double)ViewData["random"]; 
+    }
+
+    @if (random > 0.5)
+    {
+    <p style="background-color:red;">
+        @random
+    </p>
+    }
+    else
+    {
+    <p>
+        @random
+    </p>
+    }
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

@@ -17,7 +17,7 @@ namespace Laboratorium_2
             var response = await wc.GetAsync("https://api.nbp.pl/api/exchangerates/tables/a/?format=xml");
 
             if (!response.IsSuccessStatusCode)
-                throw new InvalidOperationException("Nie udało się pobrać kursu.");
+                throw new InvalidOperationException("Nie udało się pobrać kursu");
 
             string xmlContent = await response.Content.ReadAsStringAsync();
 
@@ -29,7 +29,7 @@ namespace Laboratorium_2
                 .FirstOrDefault();
 
             if (midUsdValue == null)
-                throw new InvalidOperationException("Nie znaleziono kursu USD.");
+                throw new InvalidOperationException("Nie znaleziono kursu USD");
 
             return Convert.ToSingle(midUsdValue, System.Globalization.CultureInfo.InvariantCulture);
         }
