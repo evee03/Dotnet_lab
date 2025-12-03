@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Laboratorium_7.Models.Invoice>
+
+@{
+    ViewData["Title"] = "MyOrders";
+}
+
+<h1>My Orders</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Invoice Id</th>
+            <th>@Html.DisplayNameFor(model => model.InvoiceDate)</th>
+            <th>Billing Address</th>
+            <th>@Html.DisplayNameFor(model => model.Total)</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <!-- Kolumna 1: Id jako link -->
+                <td>
+                    <a asp-action="OrderDetails" asp-route-id="@item.InvoiceId">
+                        @item.InvoiceId
+                    </a>
+                </td>
+
+                <!-- Kolumna 2: Data -->
+                <td>@item.InvoiceDate.ToShortDateString()</td>
+
+                <!-- Kolumna 3: Pełny adres -->
+                <td>
+                    @($"{item.BillingAddress}, {item.BillingCity}, {item.BillingState}, {item.BillingCountry}")
+                </td>
+
+                <!-- Kolumna 4: Kwota -->
+                <td>@item.Total.ToString("C")</td>
+
+                <!-- Kolumna 5: Link do szczegółów -->
+                <td>
+                    <a asp-action="OrderDetails" asp-route-id="@item.InvoiceId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

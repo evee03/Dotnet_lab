@@ -1,0 +1,75 @@
+﻿@model Laboratorium_7.Models.Invoice
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h2>Order Details</h2>
+
+<h4>Invoice</h4>
+<hr />
+
+<div class="container">
+    <dl class="row">
+        <dt class="col-sm-3">
+            Invoice ID
+        </dt>
+        <dd class="col-sm-9">
+            @Model.InvoiceId
+        </dd>
+
+        <dt class="col-sm-3">
+            Invoice Date
+        </dt>
+        <dd class="col-sm-9">
+            @Model.InvoiceDate.ToShortDateString()
+        </dd>
+
+        <dt class="col-sm-3">
+            Billing Address
+        </dt>
+        <dd class="col-sm-9">
+            @Model.BillingAddress @Model.BillingPostalCode @Model.BillingCity @Model.BillingState @Model.BillingCountry
+        </dd>
+
+        <dt class="col-sm-3">
+            Total
+        </dt>
+        <dd class="col-sm-9">
+            $@Model.Total
+        </dd>
+    </dl>
+</div>
+
+<h4>Ordered Songs</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Track ID</th>
+            <th>Track</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var line in Model.InvoiceLines)
+        {
+            <tr>
+                <td>
+                    @line.TrackId
+                </td>
+                <td>
+                    @line.Track.Name
+                </td>
+                <td>
+                    $@line.UnitPrice
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

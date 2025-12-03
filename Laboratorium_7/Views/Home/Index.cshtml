@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Laboratorium_7.Models.Customer>
+
+@using Microsoft.AspNetCore.Identity
+@using Laboratorium_7.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div>
+    <h2>Lista klientów z bazy Chinook (Email)</h2>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.Email</li>
+        }
+    </ul>
+</div>
+
+<div style="margin-top:20px;">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <a asp-controller="Home" asp-action="MyOrders">My Orders</a>
+    }
+</div>
